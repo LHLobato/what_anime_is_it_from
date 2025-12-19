@@ -5,19 +5,23 @@ import torch
 import torchvision.models as models
 import torch.nn as nn
 from torchvision import transforms
+import os
+
 # --- 1. CONFIGURAÇÃO DA PÁGINA ---
 Image.MAX_IMAGE_PIXELS = 100000000
 deeplearning_model = 1
 
 @st.cache_resource 
 def load_model():
+    script_path = os.path.dirname(os.path.abspath(__file__))
     if deeplearning_model == 1:
         model = models.mobilenet_v2(weights='DEFAULT')
         num_features = model.last_channel
         model.classifier = nn.Sequential(
         nn.Linear(num_features, 3)
         )
-        checkpoint = torch.load("bestMobileNetV2-more-images-5unfrozen_100.pth",map_location=torch.device('cpu'))
+        file_path = os.path.join(script_path, "bestMobileNetV2-more-images-5unfrozen_100.pth")
+        checkpoint = torch.load(file_path, map_location=torch.device('cpu'))
         model.load_state_dict(checkpoint)
     else:
         model = models.efficientnet_b0(weights='DEFAULT')
@@ -28,7 +32,8 @@ def load_model():
             nn.Dropout(p=0.2, inplace=True), # Recomendado colocar de volta
             nn.Linear(num_features, 3)
         )
-        checkpoint = torch.load("bestEfficientNetB0-more-images-5unfrozen_100.pth",map_location=torch.device('cpu'))
+        file_path = os.path.join(script_path, "bestEfficientNetB0-more-images-5unfrozen_100.pth")
+        checkpoint = torch.load(file_path, map_location=torch.device('cpu'))
         model.load_state_dict(checkpoint)
     model.eval()
     device = torch.device('cpu')
