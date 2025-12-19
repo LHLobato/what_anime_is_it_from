@@ -1,0 +1,2 @@
+Model,Epochs,Test_Loss,Test_Acuracia,Test_Precisao,Test_Recall,Test_F1-Score,Best_Acc_Train,Best_Epoch_Acc,Num_Samples,Dropout,Resolution,Data Normalization
+EfficientNetB05unfrozen,100,0.22946270209986988,0.9188562596599691,0.9156908665105387,0.9187452214727488,0.9190380737986122,16.196857810020447,31,13000,0.35,224,Yes
