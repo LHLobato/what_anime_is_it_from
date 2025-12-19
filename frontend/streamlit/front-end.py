@@ -7,19 +7,29 @@ import torch.nn as nn
 from torchvision import transforms
 # --- 1. CONFIGURAÇÃO DA PÁGINA ---
 Image.MAX_IMAGE_PIXELS = 100000000
+deeplearning_model = 1
 
 @st.cache_resource 
 def load_model():
-    model = models.efficientnet_b0(weights='DEFAULT')
-
-    num_features = model.classifier[1].in_features 
-
-    model.classifier = nn.Sequential(
-        nn.Dropout(p=0.2, inplace=True), # Recomendado colocar de volta
+    if deeplearning_model == 1:
+        model = models.mobilenet_v2(weights='DEFAULT')
+        num_features = model.last_channel
+        model.classifier = nn.Sequential(
         nn.Linear(num_features, 3)
-    )
-    checkpoint = torch.load("EfficientNetB0/bestEfficientNetB0-more-images-5unfrozen_100.pth",map_location=torch.device('cpu'))
-    model.load_state_dict(checkpoint)
+        )
+        checkpoint = torch.load("bestMobileNetV2-more-images-5unfrozen_100.pth",map_location=torch.device('cpu'))
+        model.load_state_dict(checkpoint)
+    else:
+        model = models.efficientnet_b0(weights='DEFAULT')
+
+        num_features = model.classifier[1].in_features 
+
+        model.classifier = nn.Sequential(
+            nn.Dropout(p=0.2, inplace=True), # Recomendado colocar de volta
+            nn.Linear(num_features, 3)
+        )
+        checkpoint = torch.load("bestEfficientNetB0-more-images-5unfrozen_100.pth",map_location=torch.device('cpu'))
+        model.load_state_dict(checkpoint)
     model.eval()
     device = torch.device('cpu')
     return model, device 
@@ -107,7 +117,7 @@ with st.sidebar:
     st.title("Sobre o Projeto")
     st.info(
         """
-        Este modelo utiliza uma **EfficientNetB0** treinada via Transfer Learning para identificar o anime de origem da imagem informada.
+        Este modelo utiliza uma **MobileNetV2**, modelo de visão computacional treinada via Transfer Learning para identificar o anime de origem da imagem informada.
         
         **Classes Suportadas:**
         - 🍥 Naruto
