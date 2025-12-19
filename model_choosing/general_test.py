@@ -21,8 +21,8 @@ from transformers import ViTForImageClassification
 
 
 model_name = config.MODEL_NAME
-save_dir = f"best_model/{model_name}/"
-test_dataset_dir = f"results/general_{model_name}.csv"
+save_dir = f"../best_model/{model_name}/"
+test_dataset_dir = f"../results/general_{model_name}.csv"
 
 num_epochs = config.NUM_EPOCHS
 transform = transforms.Compose([
@@ -94,7 +94,7 @@ for data_root_path in config.DATA_DIRS_ROOT:
         model.classifier = nn.Sequential(
         nn.Linear(num_features, 3)
         )
-        checkpoint_path = "best_model/MobileNetV2/bestMobileNetV2-more-images_100.pth"
+        checkpoint_path = "../best_model/MobileNetV2/bestMobileNetV2-more-images_100.pth"
         checkpoint = torch.load(checkpoint_path)
         model.load_state_dict(checkpoint)
 

@@ -109,7 +109,7 @@ model.classifier = nn.Sequential(
      nn.Linear(num_features, 3)
      )
          
-save_dir = f"best_model/{model_name}/"
+save_dir = f"../best_model/{model_name}/"
 save_model_name = f"best{model_name}-more-images-5unfrozen"
 checkpoint_filename = f"{save_model_name}_{num_epochs}.pth"
 checkpoint_path = os.path.join(save_dir, checkpoint_filename)
@@ -134,6 +134,15 @@ test_dataset = datasets.ImageFolder(
         root = config.DATA_DIR_TEST, # Ex: 'animes_test/'
         transform=transform
 )
+
+print("\n" + "="*40)
+print(f"📂 Total de imagens de teste: {len(test_dataset)}")
+print(f"🏷️  Classes encontradas (Ordem do Modelo): {test_dataset.classes}")
+print(f"🔢 Mapeamento (Nome -> Índice): {test_dataset.class_to_idx}")
+print("="*40 + "\n")
+
+
+
 # ----------------------------------------------------------------------
 # 3. GERAÇÃO DA MATRIZ DE CONFUSÃO (Análise de Erros)
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
