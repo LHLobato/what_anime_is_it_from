@@ -18,7 +18,7 @@ def load_model():
         nn.Dropout(p=0.2, inplace=True), # Recomendado colocar de volta
         nn.Linear(num_features, 3)
     )
-    checkpoint = torch.load("../../best_model/EfficientNetB0/bestEfficientNetB0-more-images-5unfrozen_100.pth",map_location=torch.device('cpu'))
+    checkpoint = torch.load("EfficientNetB0/bestEfficientNetB0-more-images-5unfrozen_100.pth",map_location=torch.device('cpu'))
     model.load_state_dict(checkpoint)
     model.eval()
     device = torch.device('cpu')
