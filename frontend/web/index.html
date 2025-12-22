@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animeletron Web</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>⛩️ Animeletron Web</h1>
+        <p class="subtitle">Descubra se é Naruto, Black Clover ou Blue Lock</p>
+
+        <div class="upload-section">
+            <input type="file" id="imageInput" accept="image/*">
+            <label for="imageInput" class="file-label">
+                <span>📂</span> Escolher Imagem
+            </label>
+        </div>
+
+        <div class="preview-section">
+            <img id="imagePreview" alt="Prévia da imagem" style="display: none;">
+            <div id="loadingSpinner" class="spinner" style="display: none;"></div>
+            <p id="statusText"></p>
+        </div>
+
+        <div id="resultsSection" style="display: none;">
+            <div id="winnerContainer" class="winner-box neutral">
+               <span id="winnerEmoji" class="emoji-box">🔮</span>
+               <div class="winner-text">
+                   <span class="label">Resultado da Análise:</span>
+                   <h2 id="winnerName">...</h2>
+               </div>
+            </div>
+            
+            <h3 class="results-title">Probabilidades Detalhadas:</h3>
+            <div id="detailsList" class="details-container">
+                </div>
+             <p class="time-info">⏱️ Tempo de inferência: <span id="inferenceTime">0</span>s</p>
+        </div>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+</body>
+</html>

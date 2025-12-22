@@ -1,0 +1,198 @@
+/* Reset básico e Fonte */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    /* Fundo gradiente profundo estilo "Cyberpunk/Night" */
+    background: radial-gradient(circle at top right, #2c003e, #000000);
+    color: #eee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Efeito Glassmorphism no Container */
+.container {
+    background-color: rgba(255, 255, 255, 0.05); /* Transparência */
+    backdrop-filter: blur(20px); /* O desfoque do vidro */
+    -webkit-backdrop-filter: blur(20px);
+    padding: 3rem;
+    border-radius: 24px;
+    /* Borda sutil brilhante */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    text-align: center;
+    max-width: 480px;
+    width: 100%;
+}
+
+h1 {
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 0.2rem;
+    /* Texto com gradiente sutil */
+    background: linear-gradient(to right, #fff, #a0a0a0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+    color: #aaa;
+    font-weight: 300;
+    margin-bottom: 2rem;
+}
+
+/* Upload Button - Mais moderno */
+input[type="file"] { display: none; }
+
+.file-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    /* Gradiente mais vibrante */
+    background: linear-gradient(135deg, #FF4B2B, #FF416C);
+    color: white;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 75, 43, 0.4);
+    margin-bottom: 20px;
+}
+
+.file-label:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 75, 43, 0.6);
+}
+.file-label span { font-size: 1.4rem; }
+
+
+/* Prévia da Imagem */
+#imagePreview {
+    max-width: 100%;
+    height: auto;
+    max-height: 280px;
+    border-radius: 16px;
+    /* Borda brilhante sutil */
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    margin-bottom: 20px;
+    object-fit: cover;
+}
+
+#statusText {
+    font-weight: 500;
+    color: #ddd;
+    margin-top: 10px;
+}
+
+/* --- RESULTADOS --- */
+
+/* Caixa do Vencedor */
+.winner-box {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background: rgba(0,0,0,0.3);
+    border-radius: 16px;
+    margin-bottom: 25px;
+    transition: all 0.4s ease;
+    border-left: 8px solid #555; /* Cor padrão */
+}
+
+.emoji-box {
+    font-size: 3.5rem;
+    margin-right: 20px;
+    filter: drop-shadow(0 0 10px rgba(255,255,255,0.3));
+}
+
+.winner-text { text-align: left; }
+.winner-text .label {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #bbb;
+}
+.winner-text h2 {
+    font-size: 1.8rem;
+    margin: 0;
+    font-weight: 700;
+}
+
+/* Temas de Cores (Com brilho extra) */
+.naruto-theme {
+    border-color: #FF8C00;
+    box-shadow: inset 0 0 20px rgba(255, 140, 0, 0.2);
+}
+.naruto-theme h2 { color: #FF8C00; text-shadow: 0 0 15px rgba(255, 140, 0, 0.5); }
+
+.black-clover-theme {
+    border-color: #32CD32;
+    box-shadow: inset 0 0 20px rgba(50, 205, 50, 0.2);
+}
+.black-clover-theme h2 { color: #32CD32; text-shadow: 0 0 15px rgba(50, 205, 50, 0.5); }
+
+.blue-lock-theme {
+    border-color: #00BFFF;
+    box-shadow: inset 0 0 20px rgba(0, 191, 255, 0.2);
+}
+.blue-lock-theme h2 { color: #00BFFF; text-shadow: 0 0 15px rgba(0, 191, 255, 0.5); }
+
+
+/* Lista de Detalhes (Estilo "Data Bars") */
+.results-title {
+    text-align: left;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    color: #ccc;
+}
+
+.details-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Estilo para os itens que o JS vai gerar */
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    background: rgba(255, 255, 255, 0.07);
+    border-radius: 12px;
+    font-weight: 500;
+}
+.detail-name { font-size: 1.1rem; }
+.detail-prob { font-weight: 700; color: #fff; }
+
+
+/* Rodapé */
+.time-info {
+    font-size: 0.85em;
+    color: #888;
+    margin-top: 25px;
+    font-weight: 300;
+}
+
+/* Spinner de Loading */
+.spinner {
+    border: 4px solid rgba(255, 255, 255, 0.1);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border-left-color: #FF4B2B;
+    border-top-color: #FF416C; /* Duas cores girando */
+    animation: spin 0.8s linear infinite;
+    margin: 30px auto;
+    box-shadow: 0 0 15px rgba(255, 75, 43, 0.3);
+}
+@keyframes spin { 100% { transform: rotate(360deg); } }
